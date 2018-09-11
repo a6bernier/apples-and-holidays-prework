@@ -17,24 +17,25 @@ def add_new_holiday_with_supplies(holiday_hash, season, holiday_name, supply_arr
     holiday_hash[season][holiday_name] = supply_array
 end
 
-def all_winter_holiday_supplies(holiday_hash)
-  holiday_hash[:winter].values.flatten
-end
-
-holiday_hash.each do |season, data|
-  puts "#{season.to_s.capitalize!}:"
-  data.each do |holiday, supply|
-    array = holiday.to_s.split("_")
-    final_holiday = []
-      array.each do |x|
-        final_holiday << x.capitalize!
-      end
-    holiday = final_holiday.join(" ")
-
-    supply = supply.join(", ")
-    puts "  #{holiday}: #{supply}"
+def all_supplies_in_holidays(holiday_hash)
+  # iterate through holiday_hash and print items such that your readout resembles:
+  # Winter:
+  #   Christmas: Lights, Wreath
+  #   New Years: Party Hats
+  # Summer:
+  #   Fourth Of July: Fireworks, BBQ
+  # etc.
+  holiday_hash.each do |season,value|
+   puts "#{season.to_s.capitalize!}:"
+   value.each do |holidays,supplies|
+    holidays = holidays.to_s.split("_")
+    holidays.each do |holiday|
+    holiday.capitalize!
+    end
+    puts "  #{holidays.join(" ")}: #{supplies.join(", ")}"
   end
 end
+
 
 def all_holidays_with_bbq(holiday_hash)
   # return an array of holiday names (as symbols) where supply lists
